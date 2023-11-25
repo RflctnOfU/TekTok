@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/trpc/react";
-import { fetchAllPosts } from "../lib/data";
+// import { fetchAllPosts } from "../lib/data";
 import { Suspense } from "react";
 import PostSkeleton from "../_components/ui/dashboard/PostSkeleton";
 
@@ -14,8 +14,8 @@ export default function Page() {
   console.log(posts);
 
   return (
-    <div className="no-scrollbar flex h-full w-full flex-col items-center overflow-y-scroll rounded-xl border-2 border-main-border/50 backdrop-blur-[6px]">
-      <div className="sticky top-0 flex h-16 w-full items-center justify-center bg-gradient-to-br from-transparent via-main-secondary to-main-tertiary">
+    <div className="no-scrollbar border-main-border/50 flex h-full w-full flex-col items-center overflow-y-scroll rounded-xl border-2 backdrop-blur-[6px]">
+      <div className="via-main-secondary to-main-tertiary sticky top-0 flex h-16 w-full items-center justify-center bg-gradient-to-br from-transparent">
         <h1 className="">Welcome back Kris</h1>
       </div>
       <Suspense fallback={<PostSkeleton />}>
