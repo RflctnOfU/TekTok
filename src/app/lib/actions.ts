@@ -20,6 +20,7 @@ const commentSchema = z.object({
 const CreatePost = postSchema.omit({ id: true });
 const EditPost = postSchema;
 const DeletePost = postSchema.omit({ title: true, content: true });
+const CreateComment = commentSchema;
 const DeleteComment = commentSchema.omit({ content: true });
 const EditComment = commentSchema;
 
@@ -35,6 +36,7 @@ export async function createPost(formData: FormData) {
     revalidatePath("/dashboard");
   redirect("/dashboard");
 }
+
 // export async function editPost(formData: FormData) {
 //   const { id, title, content } = EditPost.parse({
 //     id: formData.get("id"),
@@ -49,15 +51,15 @@ export async function createPost(formData: FormData) {
 //   redirect("/dashboard/posts");
 // }
 
-// export async function deletePost(formData: FormData) {
-//   const { id } = DeletePost.parse({
-//     id: formData.get("id"),
-//   });
-//   await api.post.deletePost({ id });
-//   await api.comment.deletePostComments({ id });
-//   revalidatePath("/dashboard/posts");
-//   redirect("/dashboard/posts");
-// }
+export async function deletePost(formData: FormData) {
+  const { id } = DeletePost.parse({
+    id: formData.get("id"),
+  });
+  await api.post.deletePost.mutate({ id });
+  await api.post.deletePostComments.mutate({ id });
+  revalidatePath("/dashboard/posts");
+  redirect("/dashboard/posts");
+}
 
 // export async function deleteComment(formData: FormData) {
 //   const { id } = DeleteComment.parse({
@@ -78,13 +80,14 @@ export async function createPost(formData: FormData) {
 //   redirect("/dashboard/comments");
 // }
 
-// export async function createComment(formData: FormData) {
-//   const { id, content } = CreateComment.parse({
-//     id: formData.get("id"),
-//     content: formData.get("content"),
-//   });
+export async function addComment(formData: FormData) {
+  const { id, content } = CreateComment.parse({
+    id: formData.get("id"),
+    content: formData.get("content"),
+  });
 
-//   await api.comment.createComment.mutate({ id, content });
-//   formData.delete("content");
-//   formData.set("content", ""), revalidatePath(`/dashboard/posts/${id}`);
-// }
+  await api.comment.createComment.mutate({ id, content });
+  // formData.delete("content");
+  formData.set("content", ""), revalidatePath(`/dashboard/posts/${id}`);
+  redirect(`/dashboard/posts/${id}`);
+}

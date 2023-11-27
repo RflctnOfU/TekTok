@@ -3,7 +3,7 @@ import { db } from "@/server/db";
 
 import { User, Comment, type Post } from "@/app/lib/definitions";
 import { eq } from "drizzle-orm";
-import { posts, users } from "@/server/db/schema";
+import { comments, posts, users } from "@/server/db/schema";
 
 export async function fetchAllPosts() {
   // const posts: Post[] = await api.post.getPosts() as Post[];
@@ -47,4 +47,35 @@ export async function fetchPostsWithUser() {
 
 export async function fetchLoggedInUser() {
   return api.user.getLoggedInUser.query();
+}
+
+export async function fetchUserPosts() {
+  return api.post.getUserPosts.query();
+}
+
+export async function fetchSinglePost(id: string) {
+  // return api.post.getSinglePost.query({ id });
+  try {
+    return await db
+      .select()
+      .from(posts)
+      .innerJoin(users, eq(posts.userId, users.id))
+      .where(eq(posts.id, id));
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Post with User");
+  }
+}
+
+export async function fetchComments(id: string) {
+  try {
+    return await db
+      .select()
+      .from(comments)
+      .innerJoin(users, eq(comments.userId, users.id))
+      .where(eq(comments.postId, id));
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Comments");
+  }
 }

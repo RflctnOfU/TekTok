@@ -1,7 +1,8 @@
-import { fetchAllPosts, fetchPostsWithUser, fetchUser } from "@/app/lib/data";
+import { fetchPostsWithUser } from "@/app/lib/data";
 import { Suspense } from "react";
-import Post from "./Post";
+
 import PostSkeleton from "./PostSkeleton";
+import PostFragment from "./PostFragment";
 
 export default async function Posts() {
   // const posts = await fetchAllPosts();
@@ -11,10 +12,8 @@ export default async function Posts() {
   return (
     <div className="grid grid-cols-8 gap-4">
       {data.map(async (post) => (
-        // console.log(post);
-
         <Suspense fallback={<PostSkeleton />}>
-          <Post key={post.post.id} post={post.post} user={post.user} />
+          <PostFragment key={post.post.id} post={post.post} user={post.user} />
         </Suspense>
       ))}
     </div>

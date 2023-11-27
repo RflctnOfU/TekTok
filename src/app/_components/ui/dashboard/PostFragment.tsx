@@ -1,10 +1,9 @@
-import { type Post, type User } from "@/app/lib/definitions";
 import type { InferSelectModel } from "drizzle-orm";
 import type { posts, users } from "@/server/db/schema";
 
 import Link from "next/link";
 import Image from "next/image";
-export default function Post({
+export default function PostFragment({
   post,
   user, // author,
 }: {
