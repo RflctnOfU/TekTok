@@ -94,7 +94,7 @@ export const users = mysqlTable("user", {
     mode: "date",
     fsp: 3,
   }).default(sql`CURRENT_TIMESTAMP(3)`),
-  image: varchar("image", { length: 255 }),
+  image: varchar("image", { length: 255 }).notNull(),
 });
 
 export const comments = mysqlTable("comment", {

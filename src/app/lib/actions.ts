@@ -23,18 +23,18 @@ const DeletePost = postSchema.omit({ title: true, content: true });
 const DeleteComment = commentSchema.omit({ content: true });
 const EditComment = commentSchema;
 
-// export async function createPost(formData: FormData) {
-//   const { title, content } = CreatePost.parse({
-//     title: formData.get("title"),
-//     content: formData.get("content"),
-//   });
+export async function createPost(formData: FormData) {
+  const { title, content } = CreatePost.parse({
+    title: formData.get("title"),
+    content: formData.get("content"),
+  });
 
-//   await api.post.createPost({ title, content });
-//   formData.set("title", ""),
-//     formData.set("content", ""),
-//     revalidatePath("/dashboard");
-//   redirect("/dashboard");
-// }
+  await api.post.createPost.mutate({ title, content });
+  formData.set("title", ""),
+    formData.set("content", ""),
+    revalidatePath("/dashboard");
+  redirect("/dashboard");
+}
 // export async function editPost(formData: FormData) {
 //   const { id, title, content } = EditPost.parse({
 //     id: formData.get("id"),

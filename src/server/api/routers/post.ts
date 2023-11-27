@@ -2,10 +2,10 @@ import { z } from "zod";
 
 import {
   createTRPCRouter,
-  // protectedProcedure,
+  protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-// import { posts } from "@/server/db/schema";
+import { posts } from "@/server/db/schema";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -20,6 +20,16 @@ export const postRouter = createTRPCRouter({
     return await ctx.db.query.posts.findMany();
   }),
 
+  createPost: protectedProcedure
+    .input(z.object({ title: z.string().min(1), content: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.insert(posts).values({
+        id: crypto.randomUUID(),
+        title: input.title,
+        content: input.content,
+        userId: ctx.session.user.id,
+      });
+    }),
   // create: protectedProcedure
   //   .input(z.object({ name: z.string().min(1) }))
   //   .mutation(async ({ ctx, input }) => {
