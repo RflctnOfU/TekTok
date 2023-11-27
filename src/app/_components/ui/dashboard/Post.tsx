@@ -6,18 +6,10 @@ import Link from "next/link";
 import Image from "next/image";
 export default function Post({
   post,
-} // author,
-: {
-  post: {
-    id: string;
-    title: string;
-    content: string;
-    userId: string;
-    createdAt: Date;
-    updatedAt: Date | null;
-    author: { name: string; image: string };
-  };
-  // author: InferSelectModel<typeof users>;
+  user, // author,
+}: {
+  post: InferSelectModel<typeof posts>;
+  user: InferSelectModel<typeof users>;
 }) {
   // console.log(author);
 
@@ -29,14 +21,14 @@ export default function Post({
           <div className="flex items-center gap-1">
             <div className="h-auto w-auto rounded-full">
               <Image
-                src={post.author.image}
+                src={user.image}
                 width={24}
                 height={24}
-                alt={post.author.name}
+                alt={user.name}
                 className="rounded-full"
               />
             </div>
-            <div>{post.author.name}</div>
+            <div>{user.name}</div>
           </div>
         </div>
         <p className="line-clamp-1 text-ellipsis rounded-b-lg  p-4">

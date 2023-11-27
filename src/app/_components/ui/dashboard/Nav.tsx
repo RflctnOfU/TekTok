@@ -13,13 +13,13 @@ export default function Nav() {
     <nav className="flex w-auto grow justify-around gap-4 pt-4 md:flex-col">
       <div className="hidden h-auto w-full grow md:block"></div>
       {linkData.map((link) => {
-        console.log(pathname === link.href ? link.href : link.link);
+        // console.log(pathname === link.href ? link.href : link.link);
 
         const Icon = link.icon;
         return (
           <div
             key={link.link}
-            className={`hover:bg-main-border/80  hover:text-btn-bg  rounded-lg p-2 transition-all duration-200 ${
+            className={`rounded-lg  p-2  transition-all duration-200 hover:bg-main-border/80 hover:text-btn-bg ${
               pathname === link.href
                 ? "bg-main-border/80 text-btn-bg"
                 : "bg-btn-bg/80 text-main-border/80"

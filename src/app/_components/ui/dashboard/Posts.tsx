@@ -14,7 +14,7 @@ export default async function Posts() {
         // console.log(post);
 
         <Suspense fallback={<PostSkeleton />}>
-          <Post key={post.id} post={post} />
+          <Post key={post.post.id} post={post.post} user={post.user} />
         </Suspense>
       ))}
     </div>
