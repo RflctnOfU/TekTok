@@ -1,5 +1,4 @@
 import { fetchComments, fetchSinglePost } from "@/app/lib/data";
-import { api } from "@/trpc/server";
 
 import Image from "next/image";
 

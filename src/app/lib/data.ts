@@ -67,6 +67,15 @@ export async function fetchSinglePost(id: string) {
   }
 }
 
+export async function fetchPostSingle(id: string) {
+  try {
+    return await db.query.posts.findFirst({ where: eq(posts.id, id) });
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Post");
+  }
+}
+
 export async function fetchComments(id: string) {
   try {
     return await db

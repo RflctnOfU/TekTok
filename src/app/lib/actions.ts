@@ -37,19 +37,19 @@ export async function createPost(formData: FormData) {
   redirect("/dashboard");
 }
 
-// export async function editPost(formData: FormData) {
-//   const { id, title, content } = EditPost.parse({
-//     id: formData.get("id"),
-//     title: formData.get("title"),
-//     content: formData.get("content"),
-//   });
+export async function editPost(formData: FormData) {
+  const { id, title, content } = EditPost.parse({
+    id: formData.get("id"),
+    title: formData.get("title"),
+    content: formData.get("content"),
+  });
 
-//   await api.post.editPost({ id, title, content });
-//   formData.set("title", ""),
-//     formData.set("content", ""),
-//     revalidatePath("/dashboard/posts");
-//   redirect("/dashboard/posts");
-// }
+  await api.post.editPost.mutate({ id, title, content });
+  formData.set("title", ""),
+    formData.set("content", ""),
+    revalidatePath("/dashboard/posts");
+  redirect("/dashboard/posts");
+}
 
 export async function deletePost(formData: FormData) {
   const { id } = DeletePost.parse({
@@ -58,7 +58,7 @@ export async function deletePost(formData: FormData) {
   await api.post.deletePost.mutate({ id });
   await api.post.deletePostComments.mutate({ id });
   revalidatePath("/dashboard/posts");
-  redirect("/dashboard/posts");
+  // redirect("/dashboard/posts");
 }
 
 // export async function deleteComment(formData: FormData) {
@@ -70,15 +70,15 @@ export async function deletePost(formData: FormData) {
 //   redirect("/dashboard/comments");
 // }
 
-// export async function editComment(formData: FormData) {
-//   const { id, content } = EditComment.parse({
-//     id: formData.get("id"),
-//     content: formData.get("content"),
-//   });
-//   await api.comment.editComment({ id, content });
-//   revalidatePath("/dashboard/comments");
-//   redirect("/dashboard/comments");
-// }
+export async function editComment(formData: FormData) {
+  const { id, content } = EditComment.parse({
+    id: formData.get("id"),
+    content: formData.get("content"),
+  });
+  await api.comment.editComment.mutate({ id, content });
+  revalidatePath("/dashboard/comments");
+  redirect("/dashboard/comments");
+}
 
 export async function addComment(formData: FormData) {
   const { id, content } = CreateComment.parse({

@@ -12,13 +12,20 @@ export const commentRouter = createTRPCRouter({
   createComment: protectedProcedure
     .input(z.object({ id: z.string(), content: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      return await ctx.db
-        .insert(comments)
-        .values({
-          id: crypto.randomUUID(),
-          content: input.content,
-          postId: input.id,
-          userId: ctx.session.user.id,
-        });
+      return await ctx.db.insert(comments).values({
+        id: crypto.randomUUID(),
+        content: input.content,
+        postId: input.id,
+        userId: ctx.session.user.id,
+      });
+    }),
+
+  editComment: protectedProcedure
+    .input(z.object({ id: z.string(), content: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db
+        .update(comments)
+        .set({ content: input.content })
+        .where(eq(comments.id, input.id));
     }),
 });

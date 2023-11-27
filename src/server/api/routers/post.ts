@@ -5,8 +5,9 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-import { comments, posts } from "@/server/db/schema";
+import { comments, posts, users } from "@/server/db/schema";
 import { eq } from "drizzle-orm";
+import { fromJSON } from "postcss";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -52,8 +53,29 @@ export const postRouter = createTRPCRouter({
 
   getSinglePost: protectedProcedure
     .input(z.object({ id: z.string() }))
-    .query(({ ctx, input }) => {
-      return ctx.db.query.posts.findFirst({ where: eq(posts.id, input.id) });
+    .query(async ({ ctx, input }) => {
+      const post = await ctx.db.query.posts.findFirst({
+        where: eq(posts.id, input.id),
+      });
+      const user = await ctx.db.query.users.findFirst({
+        where: eq(users.id, post!.userId),
+      });
+
+      return { post, user };
+    }),
+  editPost: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        title: z.string().nullable(),
+        content: z.string().nullable(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db
+        .update(posts)
+        .set({ content: input.content, title: input.title })
+        .where(eq(posts.id, input.id));
     }),
   // create: protectedProcedure
   //   .input(z.object({ name: z.string().min(1) }))
