@@ -1,19 +1,7 @@
-// "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { addComment } from "@/app/lib/actions";
-// import { api } from "@/trpc/react";
 
-export default function AddComment({ id }: { id: string }) {
-  // const router = useRouter();
-  // const [content, setContent] = useState("");
-  // const addComment = api.comment.createComment.useMutation({});
-  // function handleSubmit(e: React.FormEvent) {
-  //   e.preventDefault();
-  //   addComment.mutate({ id, content });
-  //   setContent("");
-  //   router.refresh();
+export default async function AddComment({ id }: { id: string }) {
   // }
   return (
     <form action={addComment}>
@@ -24,8 +12,6 @@ export default function AddComment({ id }: { id: string }) {
         placeholder="Comment here..."
         cols={50}
         rows={3}
-        // value={content}
-        // onChange={(e) => setContent(e.target.value)}
       />
       <div className="flex w-full justify-end">
         <button

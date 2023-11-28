@@ -1,12 +1,10 @@
 import { api } from "@/trpc/server";
 import { db } from "@/server/db";
 
-import { User, Comment, type Post } from "@/app/lib/definitions";
 import { eq } from "drizzle-orm";
 import { comments, posts, users } from "@/server/db/schema";
 
 export async function fetchAllPosts() {
-  // const posts: Post[] = await api.post.getPosts() as Post[];
   try {
     console.log("Fetching posts...");
     return await db.query.posts.findMany();
@@ -31,14 +29,6 @@ export async function fetchPostsWithUser() {
       .select()
       .from(posts)
       .innerJoin(users, eq(posts.userId, users.id));
-    // return await db.query.posts.findMany({
-    //   with: {
-    //     author: {
-    //       columns: {
-    //         name: true,
-    //         image: true,
-    //       },
-    //     },
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch Posts with User");
@@ -54,7 +44,6 @@ export async function fetchUserPosts() {
 }
 
 export async function fetchSinglePost(id: string) {
-  // return api.post.getSinglePost.query({ id });
   try {
     return await db
       .select()

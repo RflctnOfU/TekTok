@@ -1,11 +1,7 @@
 import { z } from "zod";
 
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "@/server/api/trpc";
-import { comments, posts, users } from "@/server/db/schema";
+import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
+import { comments, posts } from "@/server/db/schema";
 import { eq } from "drizzle-orm";
 
 export const commentRouter = createTRPCRouter({

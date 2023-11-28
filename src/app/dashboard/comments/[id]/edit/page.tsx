@@ -1,7 +1,6 @@
 import EditComment from "@/app/_components/ui/comments/EditComment";
 import { fetchSingleComment } from "@/app/lib/data";
 import { Suspense } from "react";
-// import { api } from "@/trpc/server";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;

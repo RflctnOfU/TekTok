@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import localFont from "next/font/local";
-import { headers, cookies } from "next/headers";
+import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "@/trpc/react";
 
