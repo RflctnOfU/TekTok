@@ -6,7 +6,7 @@ export default async function Page() {
 
   console.log(posts);
 
-  if (!posts) {
+  if (posts.length < 1) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 backdrop-blur">
         <p className="text-2xl">No posts made yet!</p>
