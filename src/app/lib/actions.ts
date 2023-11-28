@@ -61,14 +61,14 @@ export async function deletePost(formData: FormData) {
   // redirect("/dashboard/posts");
 }
 
-// export async function deleteComment(formData: FormData) {
-//   const { id } = DeleteComment.parse({
-//     id: formData.get("id"),
-//   });
-//   await api.comment.deleteComment({ id });
-//   revalidatePath("/dashboard/comments");
-//   redirect("/dashboard/comments");
-// }
+export async function deleteComment(formData: FormData) {
+  const { id } = DeleteComment.parse({
+    id: formData.get("id"),
+  });
+  await api.comment.deleteComment.mutate({ id });
+  revalidatePath("/dashboard/comments");
+  redirect("/dashboard/comments");
+}
 
 export async function editComment(formData: FormData) {
   const { id, content } = EditComment.parse({

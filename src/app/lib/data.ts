@@ -88,3 +88,21 @@ export async function fetchComments(id: string) {
     throw new Error("Failed to fetch Comments");
   }
 }
+
+export async function fetchUserComments() {
+  try {
+    return api.comment.getCommentsWithPosts.query();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Comments");
+  }
+}
+
+export async function fetchSingleComment(id: string) {
+  try {
+    return await db.query.comments.findFirst({ where: eq(comments.id, id) });
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Comment");
+  }
+}

@@ -28,4 +28,18 @@ export const commentRouter = createTRPCRouter({
         .set({ content: input.content })
         .where(eq(comments.id, input.id));
     }),
+
+  getCommentsWithPosts: protectedProcedure.query(({ ctx }) => {
+    return ctx.db
+      .select()
+      .from(comments)
+      .innerJoin(posts, eq(posts.id, comments.postId))
+      .where(eq(comments.userId, ctx.session.user.id));
+  }),
+
+  deleteComment: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.db.delete(comments).where(eq(comments.id, input.id));
+    }),
 });
