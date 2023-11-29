@@ -25,9 +25,9 @@ export default function Nav() {
                 : "bg-btn-bg/80 text-main-border/80"
             }`}
           >
-            <Link href={link.href} className="flex gap-1">
+            <Link href={link.href} className="md:flex md:gap-1">
               <Icon />
-              <button>{link.link}</button>
+              <button className="hidden md:block">{link.link}</button>
             </Link>
           </div>
         );

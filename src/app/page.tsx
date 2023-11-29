@@ -12,9 +12,9 @@ export default async function Home() {
       {/* <CreatePost /> */}
       <Header />
       <div className="flex h-full w-full gap-4 p-4">
-        <div className="flex h-full w-1/3 flex-col items-center justify-center space-y-12 rounded-lg border-2 border-main-border/60 backdrop-blur-xl">
+        <div className="flex h-full w-full flex-col items-center justify-center space-y-12 rounded-lg border-2 border-main-border/60 backdrop-blur-xl md:w-1/3">
           <div className="flex items-center justify-center">
-            <p className="w-1/2 text-3xl">
+            <p className="w-full p-4 text-3xl md:w-1/2 md:text-2xl">
               Welcome to TekTok, a place to discuss all things Tech!!
             </p>
           </div>
@@ -39,7 +39,7 @@ export default async function Home() {
             </Link>
           )}
         </div>
-        <div className="flex h-full w-2/3 items-center justify-center rounded-lg"></div>
+        <div className="flex hidden h-full items-center justify-center rounded-lg md:block md:w-2/3"></div>
       </div>
     </main>
   );

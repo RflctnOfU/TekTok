@@ -9,13 +9,13 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const session = await getServerAuthSession();
-  // const router = useRouter();
+
   if (!session) {
     return (
       <div className="p-4">
         <div className="flex h-[87.5vh] w-full items-center justify-center rounded-xl border-2 border-main-border/50 backdrop-blur">
           <div className="flex flex-col items-center justify-center gap-4">
-            <h1 className="font-mono text-3xl text-main-border">
+            <h1 className="p-4 text-center font-mono text-2xl text-main-border md:text-3xl">
               Unauthorized - Sign In to view
             </h1>
             <Link href={"/api/auth/signin"}>
@@ -31,7 +31,7 @@ export default async function Layout({
 
   return (
     <main className="flex h-full flex-col gap-4 p-4 md:flex-row md:overflow-hidden">
-      <aside className="h-full w-full flex-none rounded-xl border-2 border-main-border/50 p-4 backdrop-blur md:w-64 md:flex-col ">
+      <aside className="h-auto w-full flex-none rounded-xl border-2 border-main-border/50 p-4 backdrop-blur md:h-full md:w-64 md:flex-col ">
         <div className="relative w-full rounded-xl  bg-cover bg-center">
           <Image
             src={"/images/logo-transparent-png.png"}

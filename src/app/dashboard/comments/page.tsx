@@ -11,7 +11,7 @@ export default async function Page() {
 
   if (comments.length < 1) {
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 backdrop-blur">
+      <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 backdrop-blur md:h-full">
         <p className="text-2xl">No comments made yet!</p>
       </div>
     );
