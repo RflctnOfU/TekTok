@@ -4,10 +4,10 @@ import Link from "next/link";
 
 export default async function Page() {
   return (
-    <div className=" flex h-full w-full flex-col items-center justify-center  rounded-xl border-2 border-[#ffc139]/50 backdrop-blur-[3px]">
+    <div className=" flex min-h-[55vh] w-full flex-col items-center justify-center rounded-xl  border-2 border-[#ffc139]/50 backdrop-blur-[3px] max-md:p-4 md:h-full">
       <form
         action={createPost}
-        className="w-1/2 rounded-lg border-2 border-[#ffc139]/40 bg-gradient-to-br from-transparent via-[#574f2d] to-[#57482d]"
+        className="w-full rounded-lg border-2 border-[#ffc139]/40 bg-gradient-to-br from-transparent via-[#574f2d] to-[#57482d] md:w-1/2"
       >
         <div className="w-full rounded-md p-4 md:p-6">
           <input

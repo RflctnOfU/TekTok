@@ -26,12 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex h-screen flex-col bg-main-bg bg-cover bg-fixed bg-center bg-no-repeat ${praktika.className} text-main-border`}
+        className={`flex h-screen flex-col bg-main-bg bg-cover bg-fixed bg-center bg-no-repeat md:h-screen ${praktika.className} text-main-border`}
       >
         <TRPCReactProvider cookies={cookies().toString()}>
           <div className="h-full">{children}</div>
-          <Footer />
         </TRPCReactProvider>
+        <Footer />
       </body>
     </html>
   );

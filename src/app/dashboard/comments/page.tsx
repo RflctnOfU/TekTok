@@ -11,19 +11,19 @@ export default async function Page() {
 
   if (comments.length < 1) {
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 backdrop-blur">
+      <div className="flex w-full grow flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 backdrop-blur md:h-full">
         <p className="text-2xl">No comments made yet!</p>
       </div>
     );
   }
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 backdrop-blur">
+    <div className="flex h-full w-full grow flex-col items-center justify-center gap-4 rounded-xl border-2 border-[#ffc139]/50 p-4 backdrop-blur">
       {comments.map(async (comment) => {
         return (
           <div
             key={comment.comment.id}
-            className="flex w-1/2 flex-col justify-between rounded-md border-2 border-[#ffc139]/60 bg-[#ffc139]/20"
+            className="flex w-full flex-col justify-between rounded-md border-2 border-[#ffc139]/60 bg-[#ffc139]/20 md:w-1/2"
           >
             <p className="px-2 py-1">{comment.comment.content}</p>
             <div className="flex items-end justify-between bg-[#ffc139]/40 px-2 py-[2px] text-xs">

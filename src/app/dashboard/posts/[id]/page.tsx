@@ -14,9 +14,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   const comments = await fetchComments(id);
 
   return (
-    <div className=" flex h-full w-full flex-col items-center justify-center  rounded-xl border-2 border-main-border/50 backdrop-blur-[20px]">
-      <div className=" flex h-4/5 w-4/5 flex-col items-center  rounded-lg border-2 border-main-border/60 bg-gradient-to-br from-transparent via-main-tertiary to-[#57482d]">
-        <div className="flex h-12 w-full items-center justify-between rounded-tl-lg rounded-tr-md border-b-2 border-b-main-border/60 bg-gradient-to-br from-transparent via-[#ba8e2e] to-[#9a7d14] px-4">
+    <div className=" flex h-full w-full grow flex-col items-center justify-center  overflow-y-scroll rounded-xl border-2 border-main-border/50 backdrop-blur-[20px] max-md:p-4">
+      <div className=" flex h-full w-full grow flex-col items-center  rounded-lg border-2 border-main-border/60 bg-gradient-to-br from-transparent via-main-tertiary to-[#57482d] md:h-4/5 md:w-4/5">
+        <div className="flex h-auto w-full flex-col-reverse items-center justify-between rounded-tl-lg rounded-tr-md border-b-2 border-b-main-border/60 bg-gradient-to-br from-transparent via-[#ba8e2e] to-[#9a7d14] px-4 md:flex-row">
           <div className="flex gap-2">
             <Image
               src={post[0]!.user.image}
@@ -27,19 +27,19 @@ export default async function Page({ params }: { params: { id: string } }) {
             />{" "}
             {post[0]!.user!.name}
           </div>
-          <h1 className="line-clamp-1 w-1/2 text-center font-mono text-xl">
+          <h1 className="line-clamp-1 w-full text-center font-mono text-base md:w-1/2 md:text-xl">
             {post[0]!.post!.title}
           </h1>
-          <div>
+          <div className="">
             {post[0]!.post!.updatedAt
               ? post[0]!.post?.updatedAt.toLocaleDateString()
               : post[0]!.post?.createdAt.toLocaleDateString()}
           </div>
         </div>
-        <div className="mt-4 w-5/6 rounded-lg bg-neutral-400/80 p-4">
+        <div className="mt-4 w-[90%] rounded-lg bg-neutral-400/80 p-4">
           <p className="">{post[0]!.post?.content}</p>
         </div>
-        <div className=" flex w-full items-center justify-end p-4">
+        <div className=" flex w-[90%] items-center justify-end py-4">
           <AddComment id={id} />
         </div>
         <hr className="w-[90%] text-white" />

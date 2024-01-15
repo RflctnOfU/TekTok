@@ -10,7 +10,7 @@ export default async function AddComment({ id }: { id: string }) {
         className="rounded-lg p-2 text-sm text-gray-700 focus:outline-main-secondary/70 focus:ring-2 focus:ring-main-border"
         name="content"
         placeholder="Comment here..."
-        cols={50}
+        cols={35}
         rows={3}
       />
       <div className="flex w-full justify-end">
