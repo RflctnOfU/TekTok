@@ -14,10 +14,10 @@ export default async function Page({ params }: { params: { id: string } }) {
   const comments = await fetchComments(id);
 
   return (
-    <div className=" flex h-full w-full flex-col items-center justify-center  rounded-xl border-2 border-main-border/50 backdrop-blur-[20px] max-md:p-4">
-      <div className=" flex h-full w-full flex-col items-center rounded-lg border-2 border-main-border/60 bg-gradient-to-br from-transparent via-main-tertiary to-[#57482d] md:h-4/5 md:w-4/5">
+    <div className=" flex h-full w-full grow flex-col items-center justify-center  overflow-y-scroll rounded-xl border-2 border-main-border/50 backdrop-blur-[20px] max-md:p-4">
+      <div className=" flex h-full w-full grow flex-col items-center  rounded-lg border-2 border-main-border/60 bg-gradient-to-br from-transparent via-main-tertiary to-[#57482d] md:h-4/5 md:w-4/5">
         <div className="flex h-auto w-full flex-col-reverse items-center justify-between rounded-tl-lg rounded-tr-md border-b-2 border-b-main-border/60 bg-gradient-to-br from-transparent via-[#ba8e2e] to-[#9a7d14] px-4 md:flex-row">
-          <div className=" flex gap-2">
+          <div className="flex gap-2">
             <Image
               src={post[0]!.user.image}
               width={24}

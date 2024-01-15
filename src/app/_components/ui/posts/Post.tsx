@@ -10,7 +10,7 @@ export default async function Post({
   post: InferSelectModel<typeof posts>;
 }) {
   return (
-    <div className=" flex flex-col items-center rounded-lg border-2 border-[#ffc139]/60 bg-gradient-to-br from-transparent via-[#574f2d] to-[#57482d] md:h-auto md:w-4/5">
+    <div className=" flex w-full flex-col items-center rounded-lg border-2 border-[#ffc139]/60 bg-gradient-to-br from-transparent via-[#574f2d] to-[#57482d] md:h-auto md:w-4/5">
       <div className="flex h-12 w-full items-center justify-between rounded-tl-lg rounded-tr-md border-b-2 border-b-[#ffc139]/60 bg-gradient-to-br from-transparent via-[#ba8e2e] to-[#9a7d14] px-4">
         <h1 className="line-clamp-1 w-1/2 font-mono text-xl">{post?.title}</h1>
         <div>
